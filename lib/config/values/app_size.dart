@@ -1,0 +1,30 @@
+class AppSizes {
+  static const double outLineBorder = .5;
+  static const double elevation = 1.0;
+  static const double as8 = 8.0;
+  static const double as9 = 9.0;
+  static const double as10 = 10.0;
+  static const double as11 = 11.0;
+  static const double as12 = 12.0;
+  static const double as15 = 15.0;
+  static const double as18 = 18.0;
+  static const double as20 = 20.0;
+  static const double as22 = 22.0;
+  static const double as24 = 24.0;
+  static const double as25 = 25.0;
+  static const double as30 = 30.0;
+  static const double as40 = 40.0;
+  static const double as50 = 50.0;
+  static const double as60 = 60.0;
+  static const double as70 = 70.0;
+  static const double as80 = 80.0;
+  static const double as100 = 100.0;
+  static const double as120 = 120.0;
+  static const double as150 = 150.0;
+  static const double as180 = 180.0;
+  static const double as200 = 200.0;
+  static const double as220 = 220.0;
+  static const double as250 = 250.0;
+  static const double as300 = 300.0;
+  static const double as400 = 400.0;
+}
