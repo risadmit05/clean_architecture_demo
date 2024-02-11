@@ -6,8 +6,8 @@ import 'package:trust_ride/app/app.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  WidgetsFlutterBinding.ensureInitialized();
+
   // await Firebase.initializeApp();
   await di.inject(); //All Dependent Class
 
