@@ -1,55 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:carbo/controller/onboard_controller.dart';
-import 'package:carbo/data/onboard.dart';
-import 'package:carbo/utils/custom_style.dart';
-import 'package:carbo/utils/strings.dart';
-import 'package:carbo/widgets/onboard_content.dart';
-import 'package:carbo/widgets/size.dart';
+import 'package:trust_ride/app/config/styles/app_style.dart';
+import 'package:trust_ride/app/config/values/app_string.dart';
+import 'package:trust_ride/features/onboarding/presentation/controller/onboarding_controller.dart';
+import 'package:trust_ride/app/widgets/size_box.dart';
+import 'package:trust_ride/features/onboarding/presentation/view/widgets/onboard_content.dart';
 
-class OnboardScreen extends StatelessWidget {
-  OnboardScreen({Key? key}) : super(key: key);
-  final _controller = Get.put(OnboardController());
+class OnboardPage extends GetView<OnboardController> {
+  const OnboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Column(children: [
-        _controller.isFirstPage
-            ? addVerticalSpace(214.h)
-            : _controller.isSecondPage
-                ? addVerticalSpace(265.h)
-                : addVerticalSpace(230.h),
+        addVerticalSpace(65),
         SizedBox(
-          height: 415.h,
-          child: PageView.builder(
-            controller: _controller.pageController,
-            onPageChanged: _controller.selectedIndex,
-            itemCount: onboardData.length,
-            itemBuilder: (context, index) {
-              return OnboardContent(
-                image: onboardData[index].image,
-                title: onboardData[index].title,
-                description: onboardData[index].subTitle,
-              );
-            },
-          ),
+          height: MediaQuery.of(context).size.height * 0.7,
+          child: Obx(() => PageView.builder(
+                controller: controller.pageController,
+                onPageChanged: controller.selectedIndex,
+                itemCount: controller.onboardingList.length,
+                itemBuilder: (context, index) {
+                  return OnboardContent(
+                    image: controller.onboardingList[index].image,
+                    title: controller.onboardingList[index].title,
+                    description: controller.onboardingList[index].subTitle,
+                    controller: controller,
+                  );
+                },
+              )),
         ),
-        Obx(() => _controller.dotWidget()),
-        addVerticalSpace(65.h),
-        Obx(() => _controller.buttonWidget()),
-        addVerticalSpace(14.h),
+        Obx(() => controller.dotWidget()),
+        addVerticalSpace(20),
+        Obx(() => controller.buttonWidget()),
+        addVerticalSpace(14),
         Obx(
-          () => _controller.isFirstPage ||
-                  _controller.isSecondPage ||
-                  _controller.isThirdPage
+          () => controller.isFirstPage ||
+                  controller.isSecondPage ||
+                  controller.isThirdPage
               ? GestureDetector(
-                  onTap: _controller.pageNavigate,
+                  onTap: controller.pageNavigate,
                   child: Text(
-                    Strings.skip,
-                    style: CustomStyle.skipStyle,
+                    AppStrings.skip,
+                    style: getMediumStyle(),
                   ),
                 )
               : Container(),
